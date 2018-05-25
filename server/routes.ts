@@ -24,8 +24,10 @@ fs.createReadStream('./server/characters.csv', 'utf8')
   .on('line', line => console.log(line))
   .pipe(stream)
 
-
-Routes.get('/', (req: Request, res: Response) => {
+// Routes.get('/', (req: Request, res: Response) => {
+//   res.sendFile(path.resolve(__dirname, '..', 'index.html'));
+// })
+Routes.get('/characters', (req: Request, res: Response) => {
   res.send(characters.slice(0, 42));
 })
 
