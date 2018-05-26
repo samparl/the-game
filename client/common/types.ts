@@ -1,0 +1,35 @@
+export interface Character {
+  'S.No': number;
+  actual: number;
+  age: number;
+  alive: number;
+  boolDeadRelations: number;
+  culture: string;
+  dateOfBirth: string;
+  dateOfDeath: string;
+  father: string;
+  heir: string;
+  house: string;
+  isAlive: number;
+  isAliveFather: number;
+  isAliveHeir: number;
+  isAliveMother: number;
+  isAliveSpouse: number;
+  isInBook1: number;
+  isInBook2: number;
+  isInBook3: number;
+  isInBook4: number;
+  isInBook5: number;
+  isMale: number;
+  isMarried: number;
+  isNoble: number;
+  isPopular: number;
+  mother: string;
+  name: string;
+  numDeadRelations: number;
+  plod: number;
+  popularity: number;
+  pred: number;
+  spouse:string;
+  title: string;
+}

@@ -1,0 +1,42 @@
+.CharactersList .options {
+  height: 5rem;
+  margin: 0 5rem;
+}
+
+.CharactersList .list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  grid-row-gap: 1rem;
+}
+
+input[type='checkbox'] {
+  appearance: none;
+  margin: 2rem;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 1rem;
+  outline: solid #eee 2px;
+  position: relative;
+  cursor: pointer;
+}
+
+input[type='checkbox']:checked {
+  background: #eee;
+}
+
+input[type='checkbox']:checked:after {
+  content: '';
+  position: absolute;
+  left: 45%;
+  top: 25%;
+  width: 25%;
+  height: 50%;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg) translateX(-50%);
+  -ms-transform: rotate(45deg) translateX(-50%);
+  transform: rotate(45deg) translateX(-50%);
+}
