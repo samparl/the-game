@@ -5,6 +5,7 @@
 
 .App .App-header {
   text-align: center;
-  font-size: 24px;
-  height: 10rem;
+  font-size: 3rem;
+  padding: 2rem;
+  height: 5rem;
 }

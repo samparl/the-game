@@ -42,11 +42,11 @@ export class CharactersList extends React.Component<{}, CharactersListState> {
     return (
       <div className="CharactersList">
         <div className="options">
-          <input className="living" type="checkbox" id="living" onChange={this.applyLiving.bind(this)} />
+          <input className="living" type="checkbox" id="living" checked={this.state.living} onChange={this.applyLiving.bind(this)} />
           <label htmlFor="living">Only the Living</label>
 
-          <input className="popularity" type="checkbox" id="popularity" onChange={this.applyPopularity.bind(this) } />
-          <label htmlFor="popularity">Popularity</label>
+          <input className="popularity" type="checkbox" id="popularity" checked={this.state.order} onChange={this.applyPopularity.bind(this) } />
+          <label htmlFor="popularity">Order by Popularity</label>
         </div>
         <div className="list">
           {characters.map((character: Character) => <CharacterCard {...character} />)}
