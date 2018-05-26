@@ -1,6 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { CharactersList } from './characters-list';
+import { CharacterDetails } from './character-details';
 import './app.css';
 
 class App extends React.Component {
@@ -8,7 +10,12 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="App-header">The North Triumphs</div>
-        <CharactersList />
+        <BrowserRouter>
+          <div>
+            <Route exact path="/" component={CharactersList} />
+            <Route exact path="/:character" component={CharacterDetails} />
+          </div>
+        </BrowserRouter>
       </div>
     )
   }

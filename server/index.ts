@@ -1,5 +1,6 @@
 // import * as fs from 'fs';
 import * as express from 'express';
+import * as history from 'connect-history-api-fallback';
 import * as bodyParser from 'body-parser';
 import { Request, Response } from 'express';
 import * as path from 'path';
@@ -10,6 +11,7 @@ const PORT = 4040;
 
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: false }));
+server.use(history({ verbose: true }));
 server.use(express.static(path.resolve(__dirname, '..')))
 server.use('/api', Routes);
 
