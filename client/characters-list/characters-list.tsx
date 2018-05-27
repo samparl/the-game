@@ -22,8 +22,12 @@ export class CharactersList extends React.Component<{}, CharactersListState> {
   }
 
   componentDidMount() {
-    fetch('http://localhost:4040/api/characters')
-      .then(response => response.json())
+    const headers: any = new Headers({ 'Accept': 'application/json'});
+    fetch('http://localhost:4040/api/characters', {headers})
+      .then(response => {
+        debugger;
+        return response.json()
+      })
       .then((characters: Character[]) => { this.setState({characters}) });
   }
 

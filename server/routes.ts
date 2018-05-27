@@ -20,16 +20,14 @@ const stream = parse({}, (error: any, data: any) => {
   }
 });
 
-fs.createReadStream('./server/characters.csv', 'utf8')
-  .on('line', line => console.log(line))
-  .pipe(stream)
+fs.createReadStream('./server/characters.csv', 'utf8').pipe(stream)
 
 Routes.get('/characters', (req: Request, res: Response) => {
   res.send(characters.slice(0, 42));
 })
 
-Routes.get('/characters/:character', (req: Request, res: Response) => {
-  res.send(characters.find(character => character['S.No'] = req.params.character));
+Routes.get('/characters/:character', (req: Request, res: Response) => { 
+  res.send(characters.find(character => character['S.No'] === req.params.character));
 })
 
 export default Routes;

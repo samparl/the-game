@@ -1,4 +1,4 @@
-export interface Character {
+export class Character {
   'S.No': number;
   actual: number;
   age: number;
@@ -32,4 +32,40 @@ export interface Character {
   pred: number;
   spouse:string;
   title: string;
+
+  constructor(options: Character | {} = {}) {
+    this['S.No'] = 0;
+    this.actual = 0;
+    this.age = 0;
+    this.alive = 0;
+    this.boolDeadRelations = 0;
+    this.culture = '';
+    this.dateOfBirth = '';
+    this.dateOfDeath = '';
+    this.father = '';
+    this.heir = '';
+    this.house = '';
+    this.isAlive = 0;
+    this.isAliveFather = 0;
+    this.isAliveHeir = 0;
+    this.isAliveMother = 0;
+    this.isAliveSpouse = 0;
+    this.isInBook1 = 0;
+    this.isInBook2 = 0;
+    this.isInBook3 = 0;
+    this.isInBook4 = 0;
+    this.isInBook5 = 0;
+    this.isMale = 0;
+    this.isMarried = 0;
+    this.isNoble = 0;
+    this.isPopular = 0;
+    this.mother = '';
+    this.name = '';
+    this.numDeadRelations = 0;
+    this.plod = 0;
+    this.popularity = 0;
+    this.pred = 0;
+    this.spouse = '';
+    this.title = '';
+  }
 }
