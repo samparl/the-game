@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
+import './character-details.css';
 import { Character } from '../common/types';
 
 export class CharacterDetails extends React.Component<RouteComponentProps<any>, { character: Character }> {
@@ -25,13 +26,17 @@ export class CharacterDetails extends React.Component<RouteComponentProps<any>, 
     const { character } = this.state;
     const culture = character.culture ? ` of ${character.culture}` : '';
     const birth = character.dateOfBirth ? `, born ${character.dateOfBirth}` : ''
+    const gender = character.name ? (character.isMale ? 'Male' : 'Female') : '';
     return (
       <div className="CharacterDetails">
-        <div>
-          {`${character.title} ${character.name} ${culture}`}
+        <div className="name">
+          {`${character.name} ${culture}`}
         </div>
-        <div>
-          {(character.name && character.isMale ? 'Male' : 'Female') + birth}
+        <div className="title">
+          { character.title }
+        </div>
+        <div className="birth">
+          {gender + birth}
         </div>
       </div>
     );

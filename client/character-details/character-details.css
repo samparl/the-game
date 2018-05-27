@@ -1,0 +1,15 @@
+.CharacterDetails {
+  margin: 0 2rem;
+}
+
+.CharacterDetails .name {
+  padding: 2rem 0;
+}
+
+.CharacterDetails .time {
+  padding: 2rem 0;
+}
+
+.CharacterDetails .birth {
+  padding: 2rem 0;
+}
