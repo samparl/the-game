@@ -6,10 +6,10 @@ import './characters-list.css';
 class CharactersListState {
   characters: Character[];
   living: boolean;
-  order: boolean;
+  order: string | null;
   loading: boolean;
 
-  constructor(options: CharactersListState = { characters: [], living: false, order: false, loading: false }) {
+  constructor(options: CharactersListState = { characters: [], living: false, order: null, loading: false }) {
     this.characters = options.characters;
     this.living = options.living;
     this.order = options.order
@@ -50,7 +50,18 @@ export class CharactersList extends React.Component<{}, CharactersListState> {
   }
 
   applyPopularity(e: React.ChangeEvent<HTMLInputElement>) {
-    this.setState({ order: e.target.checked })
+    let order: string | null = 'asc';
+    switch (this.state.order) {
+      case null:
+        order = 'asc';
+        break;
+      case 'asc':
+        order = 'desc';
+        break;
+      default:
+        order = null;
+    }   
+    this.setState({ order })
   }
 
   onScroll = () => {
@@ -67,14 +78,25 @@ export class CharactersList extends React.Component<{}, CharactersListState> {
   render() {
     let characters = this.state.characters.filter(((character: Character) => this.state.living ? character.isAlive > 0 : true));
     if (this.state.living) { characters.filter(((character: Character) => character.isAlive > 0)); }
-    if (this.state.order) { characters = characters.sort((a: Character, b: Character) => (a.popularity < b.popularity) ? 1 : -1) }
+
+    let popularity = 'popularity';
+    if (this.state.order === 'desc') {
+      characters = characters.sort((a: Character, b: Character) => (a.popularity < b.popularity) ? 1 : -1);
+      popularity += ' desc';
+    }
+
+    if (this.state.order === 'asc') {
+      characters = characters.sort((a: Character, b: Character) => (a.popularity > b.popularity) ? 1 : -1);
+      popularity += ' asc';
+    }
+
     return (
       <div className="CharactersList">
         <div className="options">
           <input className="living" type="checkbox" id="living" checked={this.state.living} onChange={this.applyLiving.bind(this)} />
           <label htmlFor="living">Only the Living</label>
 
-          <input className="popularity" type="checkbox" id="popularity" checked={this.state.order} onChange={this.applyPopularity.bind(this) } />
+          <input className={popularity} type="checkbox" id="popularity" checked={!!this.state.order} onChange={this.applyPopularity.bind(this) } />
           <label htmlFor="popularity">Order by Popularity</label>
         </div>
         <div className="list">

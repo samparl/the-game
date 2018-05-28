@@ -27,7 +27,7 @@ input[type='checkbox']:checked {
   background: #eee;
 }
 
-input[type='checkbox']:checked:after {
+input[type='checkbox']:not(.popularity):checked:after {
   content: '';
   position: absolute;
   left: 45%;
@@ -39,4 +39,18 @@ input[type='checkbox']:checked:after {
   -webkit-transform: rotate(45deg) translateX(-50%);
   -ms-transform: rotate(45deg) translateX(-50%);
   transform: rotate(45deg) translateX(-50%);
+}
+
+input[type='checkbox'].popularity:checked:after {
+  content: '↓';
+  font-size: 2rem;
+  color: white;
+  position: absolute;
+  left: 25%;
+  top: -10%;
+  width: 25%;
+  height: 50%;
+}
+input[type='checkbox'].popularity.asc:checked:after {
+  content: '↑';
 }
