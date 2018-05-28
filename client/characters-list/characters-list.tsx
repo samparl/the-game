@@ -7,11 +7,13 @@ class CharactersListState {
   characters: Character[];
   living: boolean;
   order: boolean;
+  loading: boolean;
 
-  constructor(options: CharactersListState = { characters: [], living: false, order: false }) {
+  constructor(options: CharactersListState = { characters: [], living: false, order: false, loading: false }) {
     this.characters = options.characters;
     this.living = options.living;
     this.order = options.order
+    this.loading = options.loading
   }
 }
 
@@ -22,13 +24,25 @@ export class CharactersList extends React.Component<{}, CharactersListState> {
   }
 
   componentDidMount() {
-    const headers: any = new Headers({ 'Accept': 'application/json'});
-    fetch('http://localhost:4040/api/characters', {headers})
-      .then(response => {
-        debugger;
-        return response.json()
-      })
-      .then((characters: Character[]) => { this.setState({characters}) });
+    window.addEventListener('scroll', this.onScroll, false);
+    this.getCharacters();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll, false);
+  }
+
+  getCharacters({ start, count } = { start: 0, count: 12 }) {
+    if (!this.state.loading) {
+      this.setState({loading: true});
+      const headers: any = new Headers({ 'Accept': 'application/json' });
+      fetch(`http://localhost:4040/api/characters?start=${start}&&count=${count}`, { headers })
+        .then(response => response.json())
+        .then((characters: Character[]) => {
+          const totalCharacters = [...this.state.characters, ...characters];
+          this.setState({ characters: totalCharacters, loading: false });
+        });
+    }
   }
 
   applyLiving(e: React.ChangeEvent<HTMLInputElement>) {
@@ -38,6 +52,17 @@ export class CharactersList extends React.Component<{}, CharactersListState> {
   applyPopularity(e: React.ChangeEvent<HTMLInputElement>) {
     this.setState({ order: e.target.checked })
   }
+
+  onScroll = () => {
+    if (
+      (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 50) &&
+      this.state.characters.length
+    ) {
+      const start = this.state.characters.length;
+      this.getCharacters({start, count: 42});
+    }
+  }
+
 
   render() {
     let characters = this.state.characters.filter(((character: Character) => this.state.living ? character.isAlive > 0 : true));

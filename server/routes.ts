@@ -23,10 +23,13 @@ const stream = parse({}, (error: any, data: any) => {
 fs.createReadStream('./server/characters.csv', 'utf8').pipe(stream)
 
 Routes.get('/characters', (req: Request, res: Response) => {
-  res.send(characters.slice(0, 42));
+  const { start = 0, count = 42 }: { start: number, count: number }  = req.query;
+  const end = (+start) + (+count);
+  const response = characters.slice(start, end);
+  res.send(response);
 })
 
-Routes.get('/characters/:character', (req: Request, res: Response) => { 
+Routes.get('/characters/:character', (req: Request, res: Response) => {
   res.send(characters.find(character => character['S.No'] === req.params.character));
 })
 
