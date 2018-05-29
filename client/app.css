@@ -6,8 +6,24 @@
 .App .App-header {
   text-align: center;
   font-size: 3rem;
-  padding: 2rem;
+  margin: 2rem;
   height: 5rem;
+  position: relative;
+}
+
+.App .App-header .back {
+  --color: #868686;
+  position: absolute;
+  font-size: 1rem;
+  color: var(--color);
+  border: 1px solid var(--color);
+  right: 0;
+  text-decoration: none;
+  padding: .5rem 1rem;
+}
+
+.App .App-header .back:visited {
+  color: var(--color);
 }
 
 body {

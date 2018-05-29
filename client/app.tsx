@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { CharactersList } from './characters-list';
 import { CharacterDetails } from './character-details';
 import './app.css';
@@ -8,15 +8,18 @@ import './app.css';
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">The North Triumphs</div>
-        <BrowserRouter>
-          <div>
-            <Route exact path="/" component={CharactersList} />
-            <Route exact path="/:character" component={CharacterDetails} />
+      <BrowserRouter>
+        <div className="App">
+          <div className="App-header">
+            <Route render={({location}) => location.pathname === '/' ? null : <Link className="back" to="/">Back</Link>} />
+            <span className="App-title">The North Triumphs</span>
           </div>
-        </BrowserRouter>
-      </div>
+            <div>
+              <Route exact path="/" component={CharactersList} />
+              <Route exact path="/:character" component={CharacterDetails} />
+            </div>
+        </div>
+      </BrowserRouter>
     )
   }
 }
