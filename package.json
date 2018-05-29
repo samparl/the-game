@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "ts-node ./server/index.ts",
-    "client": "webpack --watch"
+    "client": "webpack --watch",
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",
