@@ -11,8 +11,10 @@ class App extends React.Component {
       <BrowserRouter>
         <div className="App">
           <div className="App-header">
-            <Route render={({location}) => location.pathname === '/' ? null : <Link className="back" to="/">Back</Link>} />
-            <span className="App-title">The North Triumphs</span>
+            <div className="App-title">
+              The North Triumphs
+              <Route render={({location}) => location.pathname === '/' ? null : <Link className="back" to="/">Back</Link>} />
+            </div>
           </div>
             <div>
               <Route exact path="/" component={CharactersList} />

@@ -4,26 +4,30 @@
 }
 
 .App .App-header {
+  --color: #222;
   text-align: center;
   font-size: 3rem;
-  margin: 2rem;
+  padding: 2rem;
   height: 5rem;
+  background-color: var(--color);
+  color: white;
+}
+
+.App .App-title {
   position: relative;
 }
 
 .App .App-header .back {
-  --color: #868686;
   position: absolute;
   font-size: 1rem;
-  color: var(--color);
-  border: 1px solid var(--color);
+  border: 1px solid white;
   right: 0;
   text-decoration: none;
   padding: .5rem 1rem;
 }
 
 .App .App-header .back:visited {
-  color: var(--color);
+  color: white;
 }
 
 body {
